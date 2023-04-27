@@ -8,9 +8,9 @@ rule busco:
         f"{OUTDIR}/{PREFIX}.busco"
     params:
         lineage = BUSCO_LINEAGE,
-        outdir = OUTDIR,
+        outdir = directory(OUTDIR),
         mode = MODE,
-        tmp_outdir = TMP_OUTDIR,
+        tmp_outdir = directory(TMP_OUTDIR),
         specific_busco = f"{OUTDIR}/busco/short_summary.specific*.txt"
     shell:
        """
@@ -26,4 +26,5 @@ rule busco:
              -c {threads}
              
         cp {params.specific_busco} {output}
+        rm -r {params.tmp_outdir}
              """  
