@@ -1,17 +1,36 @@
-# snakemake_snippet
-Snippet for snakemake pipelines. Use it to create your pipelines, just change files.
+# fastBUSCO
+The FastBUSCO is a snakemake wrapper is for running BUSCO and removing temporary files, while outputting only summary statistics. It simplifies the process of using BUSCO for genome or protein mode analysis.
 
-Command files commented in key points. Snippet has example of rules with python code and tools installed automaticly with `conda`. This snippet is runnable, it needs only `snakemake` available in you environment.
+## Installation
+To use the FastBUSCO Snakemake wrapper, please follow these steps:
 
-# Structure
-* `argparse_wrapper.py` - scripts ahat parses arguments, creates config files and runs snakemake
-* `workflow/Snakefile` - main pipeline file, collects rules needed for run and structure of the pipeline
-* `workflow/rules` - folder with rules to run
-* `workflow/envs` - folder with conda env settings for rules 
-* `workflow/scripts` - example of script used in one rule
-* `test` - folder with files needed to test snippet
+Clone the repository to your local machine:
 
-# Usage
-Clone the repository and try to run snippet, for example:
- `./argparse_wrapper.py -a ./test/assembly_with_Ns.fasta -hifi ./test/hifi_reads.fastq -o ./test/test_output -d`
-This command will dry run the script and list a steps to be done. Delete `-d` to run pipeline.
+```bash
+git clone https://github.com/zilov/fastBUSCO.git
+```
+
+Install the required dependencies. Make sure you have Snakemake installed, if not just install it with conda:
+```bash
+conda install -c bioconda -c conda-forge -c defaults snakemake
+```
+
+## Usage
+To run the FastBUSCO wrapper, use the following command:
+
+```bash
+fastBUSCO.py -m <mode> -f <fasta> -b <busco_lineage> -t <threads> -p <prefix>
+```
+
+The wrapper will run BUSCO with the specified parameters and output the summary statistics file named {prefix}.busco in the specified output_folder (or the assembly folder if not provided). Temporary files will be removed after the run.
+
+## Parameters
+The FastBUSCO Snakemake wrapper supports the following parameters:
+
+-f, --fasta: Path to the assembly FASTA file. (required)
+-m,--mode: Mode to use (choices: "genome", "prot"; default: "genome").
+-t, --threads: Number of threads to use (default: 8).
+-p, --prefix: Output files prefix (assembly file prefix by default).
+-o, --output_folder: Path to the output folder (default: assembly folder).
+-b, --busco_lineage: Path to the BUSCO lineage database folder. (required)
+-d, --debug: Run in debug mode to check if everything is OK.
