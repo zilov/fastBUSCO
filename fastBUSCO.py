@@ -63,8 +63,8 @@ if __name__ == '__main__':
     output_folder = os.path.split(fasta)[0] if not args.output_folder else os.path.abspath(args.output_folder)
     debug = args.debug
     threads = args.threads
-    busco_lineage = check_input(args.busco_lineage)
-    prefix = os.path.splitext(os.path.basename(assembly))[0] if not args.prefix else args.prefix
+    busco_lineage = os.path.abspath(args.busco_lineage)
+    prefix = os.path.splitext(os.path.basename(fasta))[0] if not args.prefix else args.prefix
     
     ## run settings
     execution_folder = os.path.dirname(os.path.abspath(getsourcefile(lambda: 0)))
@@ -85,6 +85,7 @@ if __name__ == '__main__':
         "fasta": fasta,
         "outdir" : output_folder,
         "tmp_outdir": tmp_outdir,
+        "busco_lineage": busco_lineage,
         "execution_folder" : execution_folder,
         "prefix" : prefix,
         "debug": debug,

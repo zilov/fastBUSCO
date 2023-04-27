@@ -1,6 +1,6 @@
 rule busco:
     input:
-        ASSEMBLY
+        FASTA
     conda:
         envs.busco
     threads: workflow.cores

@@ -1,6 +1,7 @@
 OUTDIR = config["outdir"]
 FASTA = config["fasta"]
 EXECUTION_FOLDER = config['execution_folder']
+BUSCO_LINEAGE = config['busco_lineage']
 MODE = config["mode"]
 PREFIX = config["prefix"]
 TMP_OUTDIR = config["tmp_outdir"]
@@ -11,7 +12,7 @@ rule all:
 
 rule envs:
     input:
-        align = "../envs/busco.yaml"
+        busco = "../envs/busco.yaml"
 
 envs = rules.envs.input 
 
