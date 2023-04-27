@@ -26,7 +26,7 @@ The wrapper will run BUSCO with the specified parameters and output the summary 
 
 ## Parameters
 The FastBUSCO Snakemake wrapper supports the following parameters:
-
+```bash
 -f, --fasta: Path to the assembly FASTA file. (required)
 -m,--mode: Mode to use (choices: "genome", "prot"; default: "genome").
 -t, --threads: Number of threads to use (default: 8).
@@ -34,3 +34,4 @@ The FastBUSCO Snakemake wrapper supports the following parameters:
 -o, --output_folder: Path to the output folder (default: assembly folder).
 -b, --busco_lineage: Path to the BUSCO lineage database folder. (required)
 -d, --debug: Run in debug mode to check if everything is OK.
+```
